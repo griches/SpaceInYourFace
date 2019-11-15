@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA2DE438237F0110007405AB /* Ship.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2DE437237F0110007405AB /* Ship.swift */; };
+		EA2DE43A237F1009007405AB /* JetFire.sks in Resources */ = {isa = PBXBuildFile; fileRef = EA2DE439237F1009007405AB /* JetFire.sks */; };
 		EAF8CFAD237EEE5700002126 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF8CFAC237EEE5700002126 /* AppDelegate.swift */; };
 		EAF8CFAF237EEE5700002126 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EAF8CFAE237EEE5700002126 /* GameScene.sks */; };
-		EAF8CFB1237EEE5700002126 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = EAF8CFB0237EEE5700002126 /* Actions.sks */; };
 		EAF8CFB3237EEE5700002126 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF8CFB2237EEE5700002126 /* GameScene.swift */; };
 		EAF8CFB5237EEE5700002126 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF8CFB4237EEE5700002126 /* GameViewController.swift */; };
 		EAF8CFB8237EEE5700002126 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAF8CFB6237EEE5700002126 /* Main.storyboard */; };
@@ -18,10 +19,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA2DE437237F0110007405AB /* Ship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ship.swift; sourceTree = "<group>"; };
+		EA2DE439237F1009007405AB /* JetFire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = JetFire.sks; sourceTree = "<group>"; };
 		EAF8CFA9237EEE5700002126 /* SpaceInYourFaceV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceInYourFaceV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAF8CFAC237EEE5700002126 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAF8CFAE237EEE5700002126 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		EAF8CFB0237EEE5700002126 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		EAF8CFB2237EEE5700002126 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		EAF8CFB4237EEE5700002126 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		EAF8CFB7237EEE5700002126 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -62,8 +64,9 @@
 			children = (
 				EAF8CFAC237EEE5700002126 /* AppDelegate.swift */,
 				EAF8CFAE237EEE5700002126 /* GameScene.sks */,
-				EAF8CFB0237EEE5700002126 /* Actions.sks */,
 				EAF8CFB2237EEE5700002126 /* GameScene.swift */,
+				EA2DE437237F0110007405AB /* Ship.swift */,
+				EA2DE439237F1009007405AB /* JetFire.sks */,
 				EAF8CFB4237EEE5700002126 /* GameViewController.swift */,
 				EAF8CFB6237EEE5700002126 /* Main.storyboard */,
 				EAF8CFB9237EEE5800002126 /* Assets.xcassets */,
@@ -134,8 +137,8 @@
 				EAF8CFB8237EEE5700002126 /* Main.storyboard in Resources */,
 				EAF8CFAF237EEE5700002126 /* GameScene.sks in Resources */,
 				EAF8CFBA237EEE5800002126 /* Assets.xcassets in Resources */,
+				EA2DE43A237F1009007405AB /* JetFire.sks in Resources */,
 				EAF8CFBD237EEE5800002126 /* LaunchScreen.storyboard in Resources */,
-				EAF8CFB1237EEE5700002126 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAF8CFB3237EEE5700002126 /* GameScene.swift in Sources */,
+				EA2DE438237F0110007405AB /* Ship.swift in Sources */,
 				EAF8CFB5237EEE5700002126 /* GameViewController.swift in Sources */,
 				EAF8CFAD237EEE5700002126 /* AppDelegate.swift in Sources */,
 			);
@@ -302,7 +306,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ford.dludlow7.SpaceInYourFaceV2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -320,7 +324,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ford.dludlow7.SpaceInYourFaceV2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
