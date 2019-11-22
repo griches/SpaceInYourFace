@@ -29,86 +29,33 @@ class GameScene: SKScene {
         addChild(ship0)
         ships.append(ship0)
     }
-
+    
+    /// Creates a ship with an image and index, but does not add it to the screen
+    /// - Parameter playerIndex: The player index to store for this ship, which can be used with the controller index to allow for each controller to control each ship
     func addShip(playerIndex: Int) -> Ship {
         let ship = Ship(playerIndex: playerIndex, imageNamed: "ship\(playerIndex)")
         return ship
     }
 
-    func touchDown(atPoint pos : CGPoint) {
-
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-
-    }
-    
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         let ship = ships.first!
 
-        // Rotate
-        if ship.isRotatingRight  {
-
-            ship.currentRotationSpeed -= ship.rotationAcceleration
-            if ship.currentRotationSpeed <= -ship.maxRotationSpeed {
-                ship.currentRotationSpeed = -ship.maxRotationSpeed
-            }
-        }
-        else if ship.isRotatingLeft  {
-
-            ship.currentRotationSpeed += ship.rotationAcceleration
-            if ship.currentRotationSpeed >= ship.maxRotationSpeed {
-                ship.currentRotationSpeed = ship.maxRotationSpeed
-            }
-        } else {
-            ship.currentRotationSpeed *= ship.decceleration
-            if abs(ship.currentRotationSpeed) < 0.1 {
-                ship.currentRotationSpeed = 0
-            }
-        }
-
-        // Move
-        if ship.isAccelerating {
-            ship.currentSpeed += ship.speedAcceleration
-            if ship.currentSpeed > ship.maxSpeed {
-                ship.currentSpeed = ship.maxSpeed
-            }
-        }
-        else {
-            ship.currentSpeed *= ship.decceleration
-            if abs(ship.currentSpeed) < 0.1 {
-                ship.currentSpeed = 0
-            }
-        }
-
-        let speedX = cos(ship.zRotation) * ship.currentSpeed
-        let speedY = sin(ship.zRotation) * ship.currentSpeed
-
-        ship.zRotation += ship.currentRotationSpeed * .pi / 180
-
-        let currentX = ship.position.x
-        let currentY = ship.position.y
-
-        let newX = currentX + speedX
-        let newY = currentY + speedY
-
-        ship.position = CGPoint(x: newX, y: newY)
+        ship.handleRotate()
+        ship.handleMove()
     }
 }
 
-// Game Controller stuff
+// MARK: Game Controller
 extension GameScene {
 
+    /// Sets up the NotificationCenter observers for the OS level connect and disconnect controller notifications
     func observeForGameControllers() {
         NotificationCenter.default.addObserver(self, selector: #selector(connectControllers), name: NSNotification.Name.GCControllerDidConnect, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(disconnectControllers), name: NSNotification.Name.GCControllerDidDisconnect, object: nil)
     }
 
+    /// Called by the notification `NSNotification.Name.GCControllerDidConnect`
     @objc func connectControllers() {
         print("Controller connected ✅")
 
@@ -120,11 +67,17 @@ extension GameScene {
             }
         }
     }
-
+    
+    /// Called by the notification `NSNotification.Name.GCControllerDidDisconnect`
     @objc func disconnectControllers() {
         print("Controller disconnected ❌")
     }
-
+    
+    /// Called  when a value is changed on any connected controller. This is configured in `connectControllers`
+    /// - Parameters:
+    ///   - gamepad: The CGController that has had a value change
+    ///   - element: The element, such as `.dpad` or `.buttonA`
+    ///   - index: The index of the controller, which should correclate to the player number
     func controllerInputDetected(gamepad: GCExtendedGamepad, element: GCControllerElement, index: Int) {
 
         let ship = ships[index]
@@ -145,16 +98,6 @@ extension GameScene {
                 ship.isRotatingLeft = false
                 ship.isRotatingRight = false
             }
-
-//            player.rotationDirection = CGFloat(gamepad.dpad.xAxis.value)
-//            if (gamepad.dpad.xAxis.value != 0)
-//            {
-//                player.isRotating = true
-//            }
-//            else if (gamepad.dpad.xAxis.value == 0)
-//            {
-//                player.isRotating = false
-//            }
         }
         else if (gamepad.buttonA == element)
         {
@@ -171,7 +114,10 @@ extension GameScene {
     }
 }
 
+// MARK: Extensions
 extension CGFloat {
+    
+    /// An extension on CGFloat that takes a number that represents Degrees and converts it to Radians
     var radians: CGFloat {
         get {
             return self * .pi / 180
